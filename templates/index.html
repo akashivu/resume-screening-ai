@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Screening AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left-panel">
+
+        <h1>Resume Screening AI</h1>
+
+        <p>
+            Upload resumes and compare them against job descriptions
+            using AI-powered NLP matching.
+        </p>
+
+        <div class="info-card">
+
+            <h3>Features</h3>
+
+            <ul>
+                <li>PDF Resume Upload</li>
+                <li>AI Match Percentage</li>
+                <li>TF-IDF NLP Engine</li>
+                <li>Real-Time Resume Analysis</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="right-panel">
+
+        <form action="/analyze" method="POST" enctype="multipart/form-data">
+
+            <label>Upload Resume PDF</label>
+
+            <input type="file" name="resume" required>
+
+            <label>Job Description</label>
+
+            <textarea
+                name="job_description"
+                rows="10"
+                placeholder="Paste job description here..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Analyze Resume
+            </button>
+
+        </form>
+
+        {% if match %}
+
+        <div class="result-card">
+
+            <h2>Resume Match Score</h2>
+
+            <h1>{{ match }}%</h1>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

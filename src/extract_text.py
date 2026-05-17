@@ -26,15 +26,7 @@ def clean_text(text):
 
 
 
-pdf_path=("uploads/high_match_resume.pdf")
 
-resume_text=extract_text_from_pdf(pdf_path)
 
-cleaned_text=clean_text(resume_text)
 
-#resume text(not cleaned)
-print(resume_text)
-
-#cleaned text
-print(cleaned_text)
 
