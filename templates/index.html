@@ -43,7 +43,7 @@
 
             <label>Upload Resume PDF</label>
 
-            <input type="file" name="resume" required>
+            <input type="file" name="resume" multiple required>
 
             <label>Job Description</label>
 
@@ -69,31 +69,46 @@
             <h1>{{ match }}%</h1>
 
         </div>
-        {% if resume_skills %}
+        
 
-<div class="skills-section">
+        {% endif %}
 
-    <h2>Extracted Resume Skills</h2>
+ {% if ranked_resumes %}
 
-    <div class="skills-container">
+<div class="ranking-section">
 
-        {% for skill in resume_skills %}
+    <h2>Ranked Resumes</h2>
 
-        <span class="skill-badge">
-            {{ skill }}
-        </span>
+    {% for resume in ranked_resumes %}
 
-        {% endfor %}
+    <div class="resume-card">
+
+        <h3>{{ resume.resume }}</h3>
+
+        <p>
+            Match Score:
+            <strong>{{ resume.score }}%</strong>
+        </p>
+
+        <div class="skills-container">
+
+            {% for skill in resume.skills %}
+
+            <span class="skill-badge">
+                {{ skill }}
+            </span>
+
+            {% endfor %}
+
+        </div>
 
     </div>
+
+    {% endfor %}
 
 </div>
 
 {% endif %}
-
-        {% endif %}
-
-    </div>
 
 </div>
 

@@ -7,6 +7,8 @@ from src.extract_text import clean_text
 from src.similarity_engine import calculate_similarity
 from src.skill_extractor import extract_skills
 
+from src.ranker import rank_resumes
+
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "uploads"
@@ -22,52 +24,34 @@ def home():
 @app.route("/analyze", methods=["POST"])
 def analyze_resume():
 
-    uploaded_file = request.files["resume"]
+    uploaded_files = request.files.getlist("resume")
 
     job_description = request.form["job_description"]
 
+    saved_paths = []
 
-    if uploaded_file:
+    for file in uploaded_files:
 
-        file_path = os.path.join(
-            app.config["UPLOAD_FOLDER"],
-            uploaded_file.filename
-        )
+        if file:
 
-        uploaded_file.save(file_path)
+            file_path = os.path.join(
+                app.config["UPLOAD_FOLDER"],
+                file.filename
+            )
 
+            file.save(file_path)
 
-        # Extract Resume Text
-        resume_text = extract_text_from_pdf(file_path)
+            saved_paths.append(file_path)
 
+    ranked_resumes = rank_resumes(
+        saved_paths,
+        job_description
+    )
 
-        # Clean Resume Text
-        resume_text = clean_text(resume_text)
-
-
-        # Clean Job Description
-        job_description = clean_text(job_description)
-       
-        resume_skills = extract_skills(resume_text)
-
-        job_skills = extract_skills(job_description)
-
-        # Calculate Similarity
-        match_percentage = calculate_similarity(
-            resume_text,
-            job_description
-        )
-
-
-        return render_template(
-            "index.html",
-            match=f"{match_percentage:.2f}",
-            resume_skills=resume_skills,
-            job_skills=job_skills
-
-        )
-
-    return render_template("index.html")
+    return render_template(
+        "index.html",
+        ranked_resumes=ranked_resumes
+    )
 
 
 if __name__ == "__main__":

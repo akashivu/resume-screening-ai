@@ -245,9 +245,23 @@ button:hover{
 }
 
 .skill-badge{
-    background:#2563eb;
-    color:white;
+    background:white;
+    color:black;
     padding:10px 15px;
     border-radius:20px;
     font-size:14px;
+}
+.ranking-section{
+    margin-top:40px;
+}
+
+.resume-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+.resume-card h3{
+    margin-bottom:10px;
 }
