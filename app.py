@@ -5,7 +5,7 @@ from src.extract_text import extract_text_from_pdf
 from src.extract_text import clean_text
 
 from src.similarity_engine import calculate_similarity
-
+from src.skill_extractor import extract_skills
 
 app = Flask(__name__)
 
@@ -47,7 +47,10 @@ def analyze_resume():
 
         # Clean Job Description
         job_description = clean_text(job_description)
+       
+        resume_skills = extract_skills(resume_text)
 
+        job_skills = extract_skills(job_description)
 
         # Calculate Similarity
         match_percentage = calculate_similarity(
@@ -58,7 +61,10 @@ def analyze_resume():
 
         return render_template(
             "index.html",
-            match=f"{match_percentage:.2f}"
+            match=f"{match_percentage:.2f}",
+            resume_skills=resume_skills,
+            job_skills=job_skills
+
         )
 
     return render_template("index.html")

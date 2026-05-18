@@ -69,6 +69,27 @@
             <h1>{{ match }}%</h1>
 
         </div>
+        {% if resume_skills %}
+
+<div class="skills-section">
+
+    <h2>Extracted Resume Skills</h2>
+
+    <div class="skills-container">
+
+        {% for skill in resume_skills %}
+
+        <span class="skill-badge">
+            {{ skill }}
+        </span>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endif %}
 
         {% endif %}
 
