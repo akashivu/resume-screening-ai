@@ -60,18 +60,7 @@
 
         </form>
 
-        {% if match %}
-
-        <div class="result-card">
-
-            <h2>Resume Match Score</h2>
-
-            <h1>{{ match }}%</h1>
-
-        </div>
         
-
-        {% endif %}
 
  {% if ranked_resumes %}
 
@@ -90,17 +79,59 @@
             <strong>{{ resume.score }}%</strong>
         </p>
 
-        <div class="skills-container">
+        <!-- Resume Skills -->
 
-            {% for skill in resume.skills %}
+<div class="skills-container">
 
-            <span class="skill-badge">
-                {{ skill }}
-            </span>
+    {% for skill in resume.skills %}
 
-            {% endfor %}
+    <span class="skill-badge">
+        {{ skill }}
+    </span>
 
-        </div>
+    {% endfor %}
+
+</div>
+
+<!-- Matched Skills -->
+
+{% if resume.matched_skills %}
+
+<h4>Matched Skills</h4>
+
+<div class="skills-container">
+
+    {% for skill in resume.matched_skills %}
+
+    <span class="matched-badge">
+        ✔ {{ skill }}
+    </span>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+<!-- Missing Skills -->
+
+{% if resume.missing_skills %}
+
+<h4>Missing Skills</h4>
+
+<div class="skills-container">
+
+    {% for skill in resume.missing_skills %}
+
+    <span class="missing-badge">
+        ✖ {{ skill }}
+    </span>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
 
     </div>
 

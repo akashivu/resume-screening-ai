@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import os
 
+os.makedirs("uploads", exist_ok=True)
 from src.extract_text import extract_text_from_pdf
 from src.extract_text import clean_text
 
