@@ -60,7 +60,53 @@
 
         </form>
 
-        
+   {% if dashboard_metrics %}
+
+<div class="dashboard-grid">
+
+    <div class="dashboard-card">
+
+        <h3>Total Resumes</h3>
+
+        <h1>
+            {{ dashboard_metrics.total_resumes }}
+        </h1>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h3>Average Score</h3>
+
+        <h1>
+            {{ dashboard_metrics.average_score }}%
+        </h1>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h3>Top Candidate</h3>
+
+        <h2>
+            {{ dashboard_metrics.top_candidate }}
+        </h2>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h3>Total Skills Found</h3>
+
+        <h1>
+            {{ dashboard_metrics.total_skills }}
+        </h1>
+
+    </div>
+
+</div>
+
+{% endif %}     
 
  {% if ranked_resumes %}
 

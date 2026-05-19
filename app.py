@@ -10,6 +10,8 @@ from src.skill_extractor import extract_skills
 
 from src.ranker import rank_resumes
 
+from src.dashboard_metrics import generate_dashboard_metrics
+
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "uploads"
@@ -48,10 +50,14 @@ def analyze_resume():
         saved_paths,
         job_description
     )
-
+    dashboard_metrics = generate_dashboard_metrics(
+    ranked_resumes
+    )
     return render_template(
         "index.html",
-        ranked_resumes=ranked_resumes
+        ranked_resumes=ranked_resumes,
+        dashboard_metrics=dashboard_metrics
+
     )
 
 
