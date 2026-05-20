@@ -12,7 +12,15 @@ from src.ranker import rank_resumes
 
 from src.dashboard_metrics import generate_dashboard_metrics
 
+from src.database import (
+    create_table,
+    save_resume_analysis
+)
+
+
 app = Flask(__name__)
+
+create_table()
 
 UPLOAD_FOLDER = "uploads"
 
