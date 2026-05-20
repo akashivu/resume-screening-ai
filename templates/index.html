@@ -1,193 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Screening AI</title>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Screening AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
+<div class="app">
 
-<div class="container">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand-icon">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM9 13h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h3v1.5H9V10z"/></svg>
+    </div>
+    <div class="brand">
+      <h1>Resume<br>Screening AI</h1>
+      <p>Upload multiple resumes and find the best matches for your job description using AI-powered NLP matching.</p>
+    </div>
+<div class="ai-architecture-card">
 
-    <div class="left-panel">
+  <h3>
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+    </svg>
+    Advanced AI Architecture
+  </h3>
 
-        <h1>Resume Screening AI</h1>
+  <p>
+    Transformer-based semantic embeddings are integrated into the platform architecture for contextual resume-job similarity analysis beyond traditional keyword matching.
+  </p>
 
-        <p>
-            Upload resumes and compare them against job descriptions
-            using AI-powered NLP matching.
-        </p>
+  <p>
+    The deployed demo currently uses an optimized TF-IDF ranking engine for lightweight production performance and deployment efficiency.
+  </p>
 
-        <div class="info-card">
+  <p>
+    Advanced semantic matching pipelines and future LLM-powered resume feedback workflows using OpenAI/Gemini APIs are maintained within the project architecture and GitHub repository.
+  </p>
 
-            <h3>Features</h3>
+</div>
+    <div class="feat-card">
+      <h3>
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        Features
+      </h3>
+      <ul class="feat-list">
+        <li><div class="dot" style="background:#ede9fe"><svg viewBox="0 0 24 24" fill="#6366f1"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></div>Upload Multiple Resumes</li>
+        <li><div class="dot" style="background:#dcfce7"><svg viewBox="0 0 24 24" fill="#16a34a"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>AI Match Percentage</li>
+        <li><div class="dot" style="background:#fef3c7"><svg viewBox="0 0 24 24" fill="#d97706"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>TF-IDF NLP Engine</li>
+        <li><div class="dot" style="background:#e0e7ff"><svg viewBox="0 0 24 24" fill="#4338ca"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>Skill Extraction</li>
+        <li><div class="dot" style="background:#fce7f3"><svg viewBox="0 0 24 24" fill="#db2777"><path d="M12 2l2.68 8.26H23l-7 5.09 2.68 8.26L12 18.52l-6.68 5.09L8 15.35 1 10.26h8.32z"/></svg></div>Ranked Results</li>
+        <li><div class="dot" style="background:#fef2f2"><svg viewBox="0 0 24 24" fill="#dc2626"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>Missing Skills Insights</li>
+      </ul>
+    </div>
 
-            <ul>
-                <li>PDF Resume Upload</li>
-                <li>AI Match Percentage</li>
-                <li>TF-IDF NLP Engine</li>
-                <li>Real-Time Resume Analysis</li>
-            </ul>
+    <div class="quote-card">
+      <p>"AI that understands resumes the way recruiters do."</p>
+    </div>
+  </aside>
 
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- Upload + JD -->
+    <div class="top-row">
+      <div class="card">
+        <div class="step-label">
+          <div class="step-num">1</div>
+          <div><h2>Upload Resumes (PDF)</h2><p>You can upload multiple resumes</p></div>
         </div>
-
-    </div>
-
-    <div class="right-panel">
-
-        <form action="/analyze" method="POST" enctype="multipart/form-data">
-
-            <label>Upload Resume PDF</label>
-
-            <input type="file" name="resume" multiple required>
-
-            <label>Job Description</label>
-
-            <textarea
-                name="job_description"
-                rows="10"
-                placeholder="Paste job description here..."
-                required
-            ></textarea>
-
-            <button type="submit">
-                Analyze Resume
-            </button>
-
+        <form action="/analyze" method="POST" enctype="multipart/form-data" id="mainForm">
+          <div class="dropzone">
+            <input type="file" id="fileInput" name="resume" multiple accept=".pdf" required onchange="showChips(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 16.5V9m0 0l-3 3m3-3l3 3M6.5 19.5A4.5 4.5 0 013 15c0-2.21 1.6-4.07 3.73-4.43A7 7 0 0119 13.5a3.5 3.5 0 01-2.5 6H6.5z"/>
+            </svg>
+            <p>Drag &amp; drop PDFs here<br><span>or click to browse</span></p>
+            <p class="sub" id="fileCount">No file selected</p>
+          </div>
+          <div class="file-chips" id="fileChips"></div>
         </form>
+      </div>
 
-   {% if dashboard_metrics %}
-
-<div class="dashboard-grid">
-
-    <div class="dashboard-card">
-
-        <h3>Total Resumes</h3>
-
-        <h1>
-            {{ dashboard_metrics.total_resumes }}
-        </h1>
-
+      <div class="card">
+        <div class="step-label">
+          <div class="step-num">2</div>
+          <div><h2>Job Description</h2><p>Paste the job description here</p></div>
+        </div>
+        <textarea name="job_description" form="mainForm"
+          placeholder="We are looking for an AI/ML Engineer with strong experience in Python, Machine Learning, NLP, Flask, SQL..." required></textarea>
+      </div>
     </div>
 
-    <div class="dashboard-card">
+    <!-- Analyze Button -->
+    <button class="btn-analyze" form="mainForm" type="submit">
+      <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+      Analyze Resumes
+    </button>
 
-        <h3>Average Score</h3>
-
-        <h1>
-            {{ dashboard_metrics.average_score }}%
-        </h1>
-
-    </div>
-
-    <div class="dashboard-card">
-
-        <h3>Top Candidate</h3>
-
+    <!-- Results -->
+    <div class="results">
+      <div class="results-header">
         <h2>
-            {{ dashboard_metrics.top_candidate }}
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.68 8.26H23l-7 5.09 2.68 8.26L12 18.52l-6.68 5.09L8 15.35 1 10.26h8.32z"/></svg>
+          Ranked Resumes
         </h2>
+        {% if ranked_resumes %}
+          <span class="badge-count">{{ ranked_resumes | length }} Candidates Analyzed</span>
+        {% endif %}
+      </div>
 
+      {% if dashboard_metrics %}
+      <div class="metrics-row">
+        <div class="metric-card"><p>Total Resumes</p><h3>{{ dashboard_metrics.total_resumes }}</h3></div>
+        <div class="metric-card"><p>Average Score</p><h3>{{ dashboard_metrics.average_score }}%</h3></div>
+        <div class="metric-card"><p>Top Candidate</p><span class="metric-name">{{ dashboard_metrics.top_candidate }}</span></div>
+        <div class="metric-card"><p>Skills Found</p><h3>{{ dashboard_metrics.total_skills }}</h3></div>
+      </div>
+      {% endif %}
+
+      <div class="table-wrap">
+        {% if ranked_resumes %}
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th><th>Candidate</th><th>Match Score</th>
+              <th>Top Skills</th><th>Missing Skills</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in ranked_resumes %}
+              {% set pct    = r.score | float %}
+              {% set circ   = 2 * 3.14159 * 16 %}
+              {% set offset = circ - (circ * pct / 100) %}
+              {% set color  = '#16a34a' if pct >= 75 else ('#6366f1' if pct >= 50 else '#9ca3af') %}
+              <tr>
+                <td>
+                  <div class="rank-cell {% if loop.index==1 %}r1{% elif loop.index==2 %}r2{% else %}r3{% endif %}">
+                    {{ loop.index }}
+                  </div>
+                </td>
+                <td><span class="candidate-name">{{ r.resume }}</span></td>
+                <td>
+                  <div class="ring-wrap">
+                    <svg viewBox="0 0 48 48">
+                      <circle cx="24" cy="24" r="16" fill="none" stroke="#f0f2f8" stroke-width="4"/>
+                      <circle cx="24" cy="24" r="16" fill="none" stroke="{{ color }}" stroke-width="4"
+                        stroke-dasharray="{{ circ }}" stroke-dashoffset="{{ offset }}"
+                        stroke-linecap="round" transform="rotate(-90 24 24)"/>
+                    </svg>
+                    <div class="ring-label">{{ r.score }}%</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="pills">
+                    {% for skill in r.skills %}<span class="pill pill-green">{{ skill }}</span>{% endfor %}
+                  </div>
+                </td>
+                <td>
+                  <div class="pills">
+                    {% for skill in r.missing_skills %}<span class="pill pill-amber">{{ skill }}</span>{% endfor %}
+                    {% if not r.missing_skills %}<span style="color:#9ca3af;font-size:11px">—</span>{% endif %}
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+          <div class="empty">Upload resumes and a job description, then click Analyze to see ranked results.</div>
+        {% endif %}
+      </div>
+
+      <div class="info-bar">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        Match score is calculated using TF-IDF and Cosine Similarity based on skills and job description relevance.
+      </div>
     </div>
 
-    <div class="dashboard-card">
-
-        <h3>Total Skills Found</h3>
-
-        <h1>
-            {{ dashboard_metrics.total_skills }}
-        </h1>
-
-    </div>
-
+  </div>
 </div>
 
-{% endif %}     
-
- {% if ranked_resumes %}
-
-<div class="ranking-section">
-
-    <h2>Ranked Resumes</h2>
-
-    {% for resume in ranked_resumes %}
-
-    <div class="resume-card">
-
-        <h3>{{ resume.resume }}</h3>
-
-        <p>
-            Match Score:
-            <strong>{{ resume.score }}%</strong>
-        </p>
-
-        <!-- Resume Skills -->
-
-<div class="skills-container">
-
-    {% for skill in resume.skills %}
-
-    <span class="skill-badge">
-        {{ skill }}
-    </span>
-
-    {% endfor %}
-
-</div>
-
-<!-- Matched Skills -->
-
-{% if resume.matched_skills %}
-
-<h4>Matched Skills</h4>
-
-<div class="skills-container">
-
-    {% for skill in resume.matched_skills %}
-
-    <span class="matched-badge">
-        ✔ {{ skill }}
-    </span>
-
-    {% endfor %}
-
-</div>
-
-{% endif %}
-
-<!-- Missing Skills -->
-
-{% if resume.missing_skills %}
-
-<h4>Missing Skills</h4>
-
-<div class="skills-container">
-
-    {% for skill in resume.missing_skills %}
-
-    <span class="missing-badge">
-        ✖ {{ skill }}
-    </span>
-
-    {% endfor %}
-
-</div>
-
-{% endif %}
-
-    </div>
-
-    {% endfor %}
-
-</div>
-
-{% endif %}
-
-</div>
-
+<script>
+  function showChips(input) {
+    const files = [...input.files];
+    document.getElementById('fileCount').textContent = files.length + ' file' + (files.length !== 1 ? 's' : '') + ' selected';
+    document.getElementById('fileChips').innerHTML = files.map(f => `
+      <div class="chip">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/></svg>
+        ${f.name} <span style="color:#9ca3af;font-size:10px">${(f.size/1024).toFixed(0)} KB</span>
+      </div>`).join('');
+  }
+</script>
 </body>
 </html>
