@@ -4,9 +4,10 @@ from src.extract_text import clean_text
 from src.similarity_engine import calculate_similarity
 from src.skill_extractor import extract_skills
 from src.skill_matcher import compare_skills
+from src.semantic_matcher import semantic_similarity
 
 import os
-
+from src.database import save_resume_analysis
 
 def rank_resumes(resume_paths, job_description):
 
@@ -27,7 +28,7 @@ def rank_resumes(resume_paths, job_description):
         cleaned_resume = clean_text(resume_text)
 
         # Similarity score
-        score = calculate_similarity(
+        score = semantic_similarity(
             cleaned_resume,
             cleaned_job_description
         )
@@ -54,6 +55,15 @@ def rank_resumes(resume_paths, job_description):
             "missing_skills": missing_skills
 
         })
+        save_resume_analysis(
+
+            os.path.basename(resume_path),
+
+            round(score, 2),
+
+            ", ".join(resume_skills)
+
+        )
 
     # Sort by highest score
     ranked_resumes.sort(
